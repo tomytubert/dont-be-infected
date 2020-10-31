@@ -39,6 +39,8 @@ Para sumar más puntos tienes 2 opciones. Acabar la pantalla lo más rápido pos
 - virus
 - points
 - isGameOver
+- youWin
+- checkAddPoints
 
 **Methods**
 
@@ -46,7 +48,7 @@ Para sumar más puntos tienes 2 opciones. Acabar la pantalla lo más rápido pos
 - updateCanvas
 - clearCanvas
 - drawCanvas
-- checkAllCollision /*Para borrar los points y poner límites de mapa*/
+- checkAllCollision
 - gameOverCallBack
 
 4. Player Constructor
@@ -58,8 +60,7 @@ Para sumar más puntos tienes 2 opciones. Acabar la pantalla lo más rápido pos
 - y position
 - size
 - speed
-- directionX
-- directionY /* no se si he de crear una dirección para cada eje */
+- direction
 - lives
 
 **Methods**
