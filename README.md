@@ -140,8 +140,3 @@ Para sumar más puntos tienes 2 opciones. Acabar la pantalla lo más rápido pos
 https://trello.com/invite/b/WSEmaoap/d2c5b69d4ad1895b7cdc3ff18973d7d5/ironhack-dont-be-infected
 
 
-
-KKKKKKKKK
-PRueba Imac
-
-
