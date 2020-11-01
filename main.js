@@ -33,6 +33,8 @@ const main = () => {
         //game.gameOverCallBack(buildGameOver);
         //game.startLoop();
 
+        //Falta aplicar la lógica para el YouWin
+
       /*
         const setPlayerDirection = (event) => { 
             if(event.code === "ArrowUp"){
@@ -54,6 +56,21 @@ const main = () => {
         buildDom(`
         <section class="game-over">
         <h1>Game Over</h1>
+        <button>Restart</button>
+        </section>
+        `)
+
+        const restartButton = document.querySelector("button");
+        restartButton.addEventListener("click",buildGameScreen);
+    };
+    const buildYouWin = () => {
+        buildDom(`
+        <section class="you-win">
+        <h1>You Win</h1>
+        <div>
+        <p>Score:</p>
+        <span class:"score"><span>
+        </div>
         <button>Restart</button>
         </section>
         `)
