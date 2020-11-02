@@ -18,6 +18,7 @@ const main = () => {
     const buildGameScreen = () => {
         buildDom(`
         <section class="game-screen">
+        <h1>Don't Be Infected</h1>
         <canvas></canvas>
         </section>
         `);
@@ -31,7 +32,6 @@ const main = () => {
 
         const game = new Game(canvasElement);
         game.gameOverCallBack(buildGameOver);
-        game.youWinOverCallBack(buildYouWin)
         game.startLoop();
 
     
@@ -54,17 +54,6 @@ const main = () => {
         buildDom(`
         <section class="game-over">
         <h1>Game Over</h1>
-        <button>Restart</button>
-        </section>
-        `)
-
-        const restartButton = document.querySelector("button");
-        restartButton.addEventListener("click",buildGameScreen);
-    };
-    const buildYouWin = () => {
-        buildDom(`
-        <section class="you-win">
-        <h1>You Win</h1>
         <div>
         <p>Score:</p>
         <span class:"score"><span>

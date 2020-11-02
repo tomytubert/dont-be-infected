@@ -9,6 +9,7 @@ class Player {
         this.directionX = 0;
         this.directionY = 0;
         this.lives = lives;
+        this.points = 0;
     }
 
     update(){
@@ -36,11 +37,17 @@ class Player {
     checkScreen(){
         //console.log("checkScreen")
         if(this.y-this.size /2 <= 0){
-            console.log("checkScreen")
-            this.directionY = 1;//habrá que mirar de cambiarlo para que no rebote
+            this.directionY = 1;
         } else if (this.y + this.size / 2 >= this.canvas.height){
             this.directionY = -1;
         }
+
+        if(this.x-this.size/2 <= 0){
+            this.directionX = 1;
+        } else if (this.x + this.size/2 >= this.canvas.width){
+            this.directionX = -1;
+        }
+
     }
 
     checkCollisionEnemy(enemy) {
@@ -56,8 +63,25 @@ class Player {
         return false;
     }
 
+    checkCollisionPoint(point) {
+        const collideRight = this.x + this.size / 2 > point.x - point.size / 2;
+        const collideLeft = this.x - this.size / 2 < point.x + point.size / 2;
+        const collideTop = this.y + this.size / 2 > point.y - point.size / 2;
+        const collideBottom = this.y - this.size / 2 < point.y + point.size / 2;
+    
+        if (collideRight && collideLeft && collideTop && collideBottom) {
+        return true;
+        }
+    
+        return false;
+    }
+
     loseLive(){
         this.lives--;
+    }
+
+    addPoints(){
+        this.points++
     }
 
 }

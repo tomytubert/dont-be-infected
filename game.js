@@ -15,7 +15,14 @@ class Game{
         this.player = new Player (this.canvas, 1) //Le doy vidas al Player y lo creo
         this.map = new Map (this.canvas)
         this.enemies = new Virus(this.canvas,this.canvas.height/2)
-        const loop = () => { 
+
+        const loop = () => {
+
+            if(Math.random()>0.99){
+            let x = Math.random()*this.canvas.width
+            let y = Math.random()*this.canvas.height
+            this.points.push(new Points(this.canvas,y,x))
+            }
 
             this.checkAllCollisions();
             this.updateCanvas();
@@ -50,16 +57,26 @@ class Game{
     }
 
     checkAllCollisions(){
+
         this.player.checkScreen();
         this.enemies.checkScreen();
+
+        this.points.forEach((point,index)=>{
+            if(this.player.checkCollisionPoint(point)){
+                this.player.addPoints();
+                this.points.splice(index,1);
+            }
+        });
+
         if(this.player.checkCollisionEnemy(this.enemies)){
             this.player.loseLive();
         if(this.player.lives === 0){
             this.isGameOver = true;
             this.onGameOver();
         }
-        if(this.player.x > this.canvas.width){
-            this.youWin = true;
+
+        if(this.player.x > this.canvas.width){ // No me funciona, revisarla.
+            this.youWin = true; 
             this.onYouWin();
         }
         }
@@ -67,9 +84,5 @@ class Game{
 
     gameOverCallBack(callback){
         this.onGameOver = callback
-    }
-
-    youWinOverCallBack(callback){
-        this.onYouWin = callback
     }
 }
