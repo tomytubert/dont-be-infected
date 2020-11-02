@@ -88,6 +88,7 @@ Para sumar más puntos tienes 2 opciones. Acabar la pantalla lo más rápido pos
 - update
 - draw
 - setDirection
+- checkScreen
 
 6. Map Constructor
 

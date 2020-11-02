@@ -14,7 +14,7 @@ class Game{
         //this.player = new this.player(this.canvas, 1) Le doy vidas al Player y lo creo
 
         const loop = () => {
-            //this.enemies = new Enemy(this.canvas, y) Creo el enemigo y lo colóco 
+            //this.enemies = new Virus(this.canvas) Creo el enemigo
 
             this.checkAllCollisions();
             this.updateCanvas();
