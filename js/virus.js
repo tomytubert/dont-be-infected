@@ -1,11 +1,11 @@
 class Virus {
-    constructor(canvas){
+    constructor(canvas,y){
         this.size = 20;
         this.canvas = canvas;
-        this.ctx = this.canvas.width;
+        this.ctx = this.canvas.getContext("2d");
         this.x = this.canvas.width / 2;
-        this.y = this.canvas.height / 2;
-        this.speed = 5;
+        this.y = y;
+        this.speed = 1;
         this.direction = -1;// Empieza hacia arriba
     }
 
@@ -24,9 +24,9 @@ class Virus {
         } else if (this.y + this.size / 2 >= this.canvas.height){
             this.direction = -1;
         }
-    }
+    } 
 
     setDirection(direction){
-        this.direction = direction;
+       this.direction = direction;
     }
 }

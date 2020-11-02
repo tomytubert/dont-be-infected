@@ -5,14 +5,15 @@ class Player {
         this.ctx = this.canvas.getContext("2d");
         this.x = 10 + this.size / 2
         this.y = this.canvas.height / 2;
-        this.speed = 5;
-        this.direction = 0;
+        this.speed = 2;
+        this.directionX = 0;
+        this.directionY = 0;
         this.lives = lives;
     }
 
     update(){
-        this.y = this.y + this.direction * this.speed//Habrá que ver para los otros sentidos
-        this.x = this.x + this.direction * this.speed
+        this.y = this.y + this.directionY * this.speed//Habrá que ver para los otros sentidos
+        this.x = this.x + this.directionX * this.speed
     }
 
     draw(){
@@ -25,15 +26,20 @@ class Player {
         );
     }
 
-    setDirection(direction){
-        this.direction=direction;
+    setDirectionX(direction){
+        this.directionX=direction;
+    }
+    setDirectionY(direction){
+        this.directionY=direction;
     }
 
     checkScreen(){
+        //console.log("checkScreen")
         if(this.y-this.size /2 <= 0){
-            this.direction = 1;//habrá que mirar de cambiarlo para que no rebote
+            console.log("checkScreen")
+            this.directionY = 1;//habrá que mirar de cambiarlo para que no rebote
         } else if (this.y + this.size / 2 >= this.canvas.height){
-            this.direction = -1;
+            this.directionY = -1;
         }
     }
 

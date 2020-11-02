@@ -29,27 +29,25 @@ const main = () => {
         canvasElement.setAttribute("width",width);
         canvasElement.setAttribute("height",height);
 
-        //const game = new Gamepad(canvasElement);
-        //game.gameOverCallBack(buildGameOver);
-        //game.startLoop();
+        const game = new Game(canvasElement);
+        game.gameOverCallBack(buildGameOver);
+        game.youWinOverCallBack(buildYouWin)
+        game.startLoop();
 
-        //Falta aplicar la lógica para el YouWin
-
-      /*
+    
         const setPlayerDirection = (event) => { 
             if(event.code === "ArrowUp"){
-                game.player.setDirection(-1);
+                game.player.setDirectionY(-1);
             } else if (event.code === "ArrowDown"){
-                game.player.setDirection(1);
+                game.player.setDirectionY(1);
             } else if (event.code ==="ArrowLeft"){
-                game.player.setDirection(-1)
+                game.player.setDirectionX(-1)
             } else if (event.code === "ArrowRight"){
-                game.player.setDirection(1)
+                game.player.setDirectionX(1)
             }
         } 
         document.addEventListener("keydown", setPlayerDirection)
-        */
-        //No se bien como plantear las dos direcciones. 
+        
     };
 
     const buildGameOver = () => {
