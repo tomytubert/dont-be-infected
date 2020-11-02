@@ -48,7 +48,7 @@ class Game{
     checkAllCollisions(){
         this.player.checkScreen();
         if(this.player.checkCollisionEnemy){
-            this.player.loselive();
+            this.player.loseLive();
         if(this.player.lives === 0){
             this.isGameOver = true;
             this.onGameOver();
