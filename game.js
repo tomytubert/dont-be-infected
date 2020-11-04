@@ -12,12 +12,12 @@ class Game{
     }
 
     startLoop(){
-        this.player = new Player (this.canvas, 1) //Le doy vidas al Player y lo creo
+        this.player = new Player (this.canvas, 3) //Le doy vidas al Player y lo creo
         this.map = new Map (this.canvas)
         this.enemies = new Virus(this.canvas,this.canvas.height/2)
 
         const loop = () => {
-
+            
             if(Math.random()>0.99){
             let x = Math.random()*this.canvas.width
             let y = Math.random()*this.canvas.height
@@ -28,8 +28,7 @@ class Game{
             this.updateCanvas();
             this.clearCanvas();
             this.drawCanvas();
-
-            if(!this.isGameOver && !this.youWin){
+            if(!this.isGameOver){
                 window.requestAnimationFrame(loop)
             }
         };
@@ -47,7 +46,13 @@ class Game{
     }
 
     drawCanvas(){
-        this.player.draw()
+        if(this.player.directionX === 0){
+            this.player.drawL()
+        } else if (this.player.directionX === -1){
+            this.player.drawR()
+        } else if (this.player.directionX === 1){
+            this.player.drawL()
+        }
         this.enemies.draw()
         this.map.draw()
 
@@ -70,19 +75,33 @@ class Game{
 
         if(this.player.checkCollisionEnemy(this.enemies)){
             this.player.loseLive();
+            const heart = document.querySelector(".img")
+            heart.remove()
+        }
         if(this.player.lives === 0){
             this.isGameOver = true;
-            this.onGameOver();
-        }
-
-        if(this.player.x > this.canvas.width){ // No me funciona, revisarla.
-            this.youWin = true; 
-            this.onYouWin();
-        }
+            this.onGameOver(this.player.points);
         }
     };
 
     gameOverCallBack(callback){
         this.onGameOver = callback
+        //this.player.points = score
     }
+
+    renderHearthLives(){
+    
+        if(this.player.lives != 0){
+            for(let i=0; i<this.player.lives; i++){
+                console.log(this.player.lives)
+            const img =  `
+            <img class="img" src="./image/heart.png">
+            `;
+            const lives = document.querySelector(".lives");
+            const heart = document.createElement("div");
+            lives.appendChild(heart)
+            heart.innerHTML = img
+            }
+        }
+        }
 }

@@ -1,6 +1,6 @@
 class Virus {
     constructor(canvas,y){
-        this.size = 20;
+        this.size = 40;
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.x = this.canvas.width / 2;
@@ -14,14 +14,15 @@ class Virus {
     }
 
     draw(){
-        this.ctx.fillStyle = "red";
-        this.ctx.fillRect(this.x,this.y - this.size / 2, this.size, this.size)
+        let img = new Image();
+        img.src ="./image/virus.png"
+        this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
     }
 
     checkScreen(){
-        if(this.y-this.size /2 <= 0){
+        if(this.y<= 0){
             this.direction = 1;
-        } else if (this.y + this.size / 2 >= this.canvas.height){
+        } else if (this.y + this.size >= this.canvas.height){
             this.direction = -1;
         }
     } 

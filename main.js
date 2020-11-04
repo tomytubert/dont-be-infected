@@ -3,7 +3,8 @@ const main = () => {
         const main = document.querySelector("main");
         main.innerHTML=html;
     };
-    
+
+
     const buildSplashScreen = () => {
         buildDom(`
         <section class="splash-screen">
@@ -19,6 +20,16 @@ const main = () => {
         buildDom(`
         <section class="game-screen">
         <h1>Don't Be Infected</h1>
+        <div id="data">
+        <div>
+        <p>Score</p>
+        <span class="score">0</span>
+        </div>
+        <div>
+        <p>Lives</p>
+        <span class="lives"></span>
+        </div>
+        </div>
         <canvas></canvas>
         </section>
         `);
@@ -33,8 +44,8 @@ const main = () => {
         const game = new Game(canvasElement);
         game.gameOverCallBack(buildGameOver);
         game.startLoop();
-
-    
+        game.renderHearthLives();
+        
         const setPlayerDirection = (event) => { 
             if(event.code === "ArrowUp"){
                 game.player.setDirectionY(-1);
@@ -42,21 +53,23 @@ const main = () => {
                 game.player.setDirectionY(1);
             } else if (event.code ==="ArrowLeft"){
                 game.player.setDirectionX(-1)
+                //game.player.draw("./image/Running emoji L.png")
             } else if (event.code === "ArrowRight"){
                 game.player.setDirectionX(1)
+                //game.player.draw("./image/Running emoji R.png")
             }
         } 
         document.addEventListener("keydown", setPlayerDirection)
         
     };
 
-    const buildGameOver = () => {
+    const buildGameOver = (score) => {
         buildDom(`
         <section class="game-over">
         <h1>Game Over</h1>
         <div>
         <p>Score:</p>
-        <span class:"score"><span>
+        <span class="score">${score}<span>
         </div>
         <button>Restart</button>
         </section>
