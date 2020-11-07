@@ -46,6 +46,7 @@ const main = () => {
         game.startLoop();
         game.renderHearthLives();
         
+        
         const setPlayerDirection = (event) => { 
             if(event.code === "ArrowUp"){
                 game.player.setDirectionY(-1);

@@ -63,6 +63,7 @@ class Player {
         if (collideRight && collideLeft && collideTop && collideBottom){
             this.directionX = this.directionX * -1;// Para que rebote cuando choca y no perder todas las vidas
             this.directionY = this.directionY * -1;
+            console.log("reboto");
         return true;
         } else {
             return false;

@@ -11,14 +11,15 @@ class Game{
     this.map;
     this.vaccine;
     this.actualLives;
+    this.activeRenderHearth = true;
     }
 
 
     startLoop(){
-        this.player = new Player (this.canvas, 3) //Le doy vidas al Player y lo creo
+        this.player = new Player (this.canvas, 1) //Le doy vidas al Player y lo creo
         this.map = new Map (this.canvas)
         this.enemies = new Virus(this.canvas,this.canvas.height/2)
-        this.actualLives = this.player.lives;
+        //this.actualLives = this.player.lives;
         
 
         const loop = () => {
@@ -29,7 +30,7 @@ class Game{
             this.points.push(new Points(this.canvas,y,x))
             }
 
-            if(Math.random()*10000>9995){ //Creo aquí la vida 
+            if(Math.random()*10000>9990){ //Creo aquí la vida 
                 let x = Math.random()*this.canvas.width
                 let y = Math.random()*this.canvas.height
                 this.vaccine = new Vaccine(this.canvas,y,x)
@@ -40,14 +41,7 @@ class Game{
             this.updateCanvas();
             this.clearCanvas();
             this.drawCanvas();
-
-            // if(this.actualLives < this.player.lives ){ //Hay que buscar una condición para que se reproduzca una vez
-            //     console.log("ifLives")
-            //     for(let i=0; i<this.player.lives; i++){
-            //         this.renderHearthLives();
-            //         console.log("forLives")
-            //     }
-            // }
+            this.renderHearthLives();
             if(!this.isGameOver){
                 window.requestAnimationFrame(loop)
             }
@@ -101,11 +95,12 @@ class Game{
         });
 
     
-            //Choque de con la vaccine
+        //Choque de con la vaccine
         if(this.vaccine){
             if(this.player.checkCollisionPoint(this.vaccine)){
                 this.player.addLives();//Añado vidas
                 this.vaccine = null;
+                this.activeRenderHearth = true;
                 //console.log(this.player.lives)
             }
         }
@@ -129,9 +124,8 @@ class Game{
 
     renderHearthLives(){
         
-        if(this.actualLives < this.player.lives ){
-            for(let i=0; i<this.player.lives; i++){
-                //console.log(this.player.lives)
+        if(this.player.lives !=0 && this.activeRenderHearth){
+
             const img =  `
             <img class="img" src="./image/heart.png">
             `;
@@ -139,7 +133,9 @@ class Game{
             const heart = document.createElement("div");
             lives.appendChild(heart)
             heart.innerHTML = img
-            }
+            this.activeRenderHearth = false;
+
+            console.log(this.player.lives);
         }
-        }
+}
 }
