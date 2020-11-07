@@ -1,4 +1,4 @@
-class Points {
+class Vaccine {
 
     constructor (canvas, y, x){
     this.canvas = canvas;
@@ -9,12 +9,6 @@ class Points {
     }
 
     draw(){
-    let img = new Image();
-    img.src ="./image/mascarilla.png"
-    this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
-    }
-
-    drawVaccine(){
         let img = new Image();
         img.src ="./image/vaccine.png"
         this.ctx.drawImage(img,this.x,this.y,this.size,this.size)

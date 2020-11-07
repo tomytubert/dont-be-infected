@@ -1,8 +1,6 @@
 class Player {
     constructor(canvas,lives){
         this.size = 80;
-        //this.height = 80;
-        //this.width = 60;
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.x = 10 + this.size / 2;
@@ -20,13 +18,13 @@ class Player {
     }
     drawL(){
     let img = new Image();
-    img.src = "./image/Running emoji L.png"
+    img.src = "./image/MArioBros.png"
     this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
     }
 
     drawR(){
         let img = new Image();
-        img.src = "./image/Running emoji R.png"
+        img.src = "./image/MArioBrosL.png"
         this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
         }
 
@@ -92,6 +90,10 @@ class Player {
         this.points++
         const score = document.querySelector(".score")
         score.innerText = this.points
+    }
+
+    addLives(){
+    this.lives++
     }
 
 }
