@@ -25,14 +25,14 @@ class Game{
         const loop = () => {
             
             if(Math.random()>0.99){
-            let x = Math.random()*this.canvas.width
-            let y = Math.random()*this.canvas.height
+            let x = Math.random()*this.canvas.width-50
+            let y = Math.random()*this.canvas.height-50
             this.points.push(new Points(this.canvas,y,x))
             }
 
             if(Math.random()*10000>9990){ //Creo aquí la vida 
-                let x = Math.random()*this.canvas.width
-                let y = Math.random()*this.canvas.height
+                let x = Math.random()*this.canvas.width-50//le resto por que se me salian del canvas
+                let y = Math.random()*this.canvas.height-50
                 this.vaccine = new Vaccine(this.canvas,y,x)
             }
         
