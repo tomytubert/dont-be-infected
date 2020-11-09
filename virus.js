@@ -28,6 +28,28 @@ class Virus {
     } 
 
     setDirection(direction){
-       this.direction = direction;
+    this.direction = direction;
     }
 }
+
+// class BigVirusX extends Virus {
+
+//     constructor(canvas,x){
+//         super(size,canvas,ctx,x,y,speed);
+//         this.size = this.canvas.height;
+//         this.y = this.canvas.height / 2;
+//         this.x = x-this.size/2;//Le daré o -this.size/2 o el ancho para que salga por un lado o por otro
+//     }
+
+//     update(){
+//         this.x = this.x + this.direction*this.speed
+//     }
+
+//     checkScreen(){
+//         if(this.x>= 0){// 0 será el punto de retorno del lado izquierdo
+//             this.direction = 1;
+//         } else if (this.x <= this.canvas.width){
+//             this.direction = -1;
+//         }
+//     } 
+//}

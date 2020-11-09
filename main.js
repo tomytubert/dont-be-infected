@@ -7,9 +7,39 @@ const main = () => {
 
     const buildSplashScreen = () => {
         buildDom(`
+        <div class="leaf">
+        <div>  <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div><img src="./image/MArioBros.png" height="75px" width="75px"></img></div>
+        <div>  <img src="./image/virus.png" height="75px" width="75px" ></img></div>
+        <div><img  src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div> <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div>   <img src="./image/MArioBros.png" height="75px" width="75px"></div>
+        <div><img src="./image/virus.png" height="75px" width="75px"></div>
+        </div>
+        
+        <div class="leaf leaf1">
+        <div>  <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div><img src="./image/MArioBros.png" height="75px" width="75px"></img></div>
+        <div>  <img src="./image/virus.png" height="75px" width="75px" ></img></div>
+        <div><img  src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div> <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div>   <img src="./image/MArioBros.png" height="75px" width="75px"></div>
+        <div><img src="./image/virus.png" height="75px" width="75px"></div>
+        </div>
+        
+        <div class="leaf leaf2">
+        <div>  <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div><img src="./image/MArioBros.png" height="75px" width="75px"></img></div>
+        <div>  <img src="./image/virus.png" height="75px" width="75px" ></img></div>
+        <div><img  src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div> <img src="./image/virus.png" height="75px" width="75px"></img></div>
+        <div>   <img src="./image/MArioBros.png" height="75px" width="75px"></div>
+        <div><img src="./image/virus.png" height="75px" width="75px"></div>
+        </div>
+        
         <section class="splash-screen">
-        <h1>Don't Be Infected</h1>
-        <button>Start</button>
+        <h1 class="typewriter">Don't Be Infected</h1>
+        <button class="animate__animated animate__pulse">Start</button>
         </section>
         `);
         const startButton = document.querySelector("button");

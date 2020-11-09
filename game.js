@@ -5,6 +5,7 @@ class Game{
     this.ctx = this.canvas.getContext("2d");
     this.player;
     this.enemies;
+    this.enemiesX;
     this.isGameOver = false;
     this.youWin = false;
     this.points = [];
@@ -19,20 +20,19 @@ class Game{
         this.player = new Player (this.canvas, 1) //Le doy vidas al Player y lo creo
         this.map = new Map (this.canvas)
         this.enemies = new Virus(this.canvas,this.canvas.height/2)
-        //this.actualLives = this.player.lives;
-        
-
+        this.enemiesX = new BigVirusX(this.canvas,this.canvas.width*2)//Va de derecha a izquierda
+        //this.enemiesX = new BigVirusX(this.canvas,0)//Va de izquierda a derecha
         const loop = () => {
             
             if(Math.random()>0.99){
-            let x = Math.random()*this.canvas.width-50
-            let y = Math.random()*this.canvas.height-50
+            let x = Math.random()*(this.canvas.width-80)
+            let y = Math.random()*(this.canvas.height-80)
             this.points.push(new Points(this.canvas,y,x))
             }
 
             if(Math.random()*10000>9990){ //Creo aquí la vida 
-                let x = Math.random()*this.canvas.width-50//le resto por que se me salian del canvas
-                let y = Math.random()*this.canvas.height-50
+                let x = Math.random()*(this.canvas.width-80)//le resto por que se me salian del canvas
+                let y = Math.random()*(this.canvas.height-80)
                 this.vaccine = new Vaccine(this.canvas,y,x)
             }
         
@@ -52,7 +52,13 @@ class Game{
 
     updateCanvas(){
         this.player.update();
-        this.enemies.update()
+        this.enemies.update();
+        this.enemiesX.update();
+        //this.x + this.size > this.canvas.width/2
+        console.log(this.enemiesX.x+this.enemies.size/2);
+        console.log("<");
+        console.log(this.canvas.width/2);
+        
     };
 
     clearCanvas(){
@@ -68,8 +74,9 @@ class Game{
         } else if (this.player.directionX === 1){
             this.player.drawL()
         }
-        this.enemies.draw()
-        this.map.draw()
+        this.enemies.draw();
+        this.enemiesX.draw();
+        this.map.draw();
 
         if(this.vaccine){
             //console.log(this.vaccine.x,this.vaccine.y)
@@ -86,6 +93,8 @@ class Game{
 
         this.player.checkScreen();
         this.enemies.checkScreen();
+        this.enemiesX.checkScreen();
+        
         
         this.points.forEach((point,index)=>{
             if(this.player.checkCollisionPoint(point)){
@@ -111,6 +120,13 @@ class Game{
             const heart = document.querySelector(".img")
             heart.remove()
         }
+
+        // if(this.player.checkCollisionEnemy(this.enemiesX)){
+        //     this.player.loseLive();
+        //     const heart = document.querySelector(".img")
+        //     heart.remove()
+        // }
+
         if(this.player.lives === 0){
             this.isGameOver = true;
             this.onGameOver(this.player.points);
