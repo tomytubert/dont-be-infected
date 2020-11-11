@@ -57,7 +57,7 @@ const main = () => {
         </div>
         <div class="box">
         <p class="black-title">Power</p>
-        <div class="bar"></div>
+        <div id="bar"></div>
         </div>
         <div>
         <p class="white-title">Lives</p>

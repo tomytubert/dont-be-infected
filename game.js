@@ -11,10 +11,13 @@ class Game{
     this.points = [];
     this.map;
     this.vaccine;
+    this.gel;
     this.activeEnemiesX = true;
     this.activeEnemiesY = true;
     this.activeEnemiesRandom = true;
     this.activeRenderHearth = true;
+    this.activeMoreGel = true;
+    this.turnOffCollisions = true;
     }
 
 
@@ -29,10 +32,16 @@ class Game{
             this.points.push(new Points(this.canvas,y,x))
             }
 
-            if(Math.random()*10000>9990){ //Creo aquí la vida 
+            if(Math.random()*10000>9980 && this.player.lives < 3){ //Creo aquí la vida 
                 let x = Math.random()*(this.canvas.width-80)//le resto por que se me salian del canvas
                 let y = Math.random()*(this.canvas.height-80)
                 this.vaccine = new Vaccine(this.canvas,y,x)
+            }
+
+            if(Math.random()*10000>9980 && this.activeMoreGel){ //Creo aquí el gel
+                let x = Math.random()*(this.canvas.width-80)//le resto por que se me salian del canvas
+                let y = Math.random()*(this.canvas.height-80)
+                this.gel = new Gel(this.canvas,y,x)
             }
 
             function multiple(valor,multiple){
@@ -53,11 +62,9 @@ class Game{
                     if(a > 0.5){
                     this.enemiesRandom.push(new VirusRandom(this.canvas,x,this.canvas.height-15)) 
                     this.activeEnemiesRandom = false;
-                    console.log("R1");
                     } else {
                     this.enemiesRandom.push(new VirusRandom(this.canvas,x,-15)) 
                     this.activeEnemiesRandom = false;
-                    console.log("R2");
                     }
                     setTimeout(()=>{
                     this.activeEnemiesRandom = true;
@@ -162,8 +169,11 @@ class Game{
         this.map.draw();
 
         if(this.vaccine){
-            //console.log(this.vaccine.x,this.vaccine.y)
             this.vaccine.draw()
+        }
+
+        if(this.gel){
+            this.gel.draw()
         }
 
         this.points.forEach((points) => {
@@ -200,42 +210,81 @@ class Game{
         });
 
     
-        //Choque de con la vaccine
+        //Choque con la vaccine
         if(this.vaccine){
             if(this.player.checkCollisionPoint(this.vaccine)){
                 this.player.addLives();//Añado vidas
                 this.vaccine = null;
                 this.activeRenderHearth = true;
-                //console.log(this.player.lives)
             }
         }
-    
+        //Choque con el gel
+        if(this.gel){
+            if(this.player.checkCollisionPoint(this.gel)){
+                this.player.addGel();
+                this.gel = null
+                let bar = document.querySelector("#bar")
+                if(this.player.counterOfGel === 3){
+                    bar.classList.add("bar1")
+                    this.activeMoreGel = false;
+                    this.turnOffCollisions = false;
+                    this.player.speed = 4;
+                    setTimeout(()=>{
+                        this.activeMoreGel = true;//Pasados 5s vuelve a generar geles
+                        this.turnOffCollisions = true; //Y se activan otra vez los choques
+                        this.player.counterOfGel = 0; // Vuelve a contar
+                        bar.classList.remove("bar1")
+                        this.player.speed = 2;
+                    },5000) 
+                }
+            }
+        };
+    //Choque enemigos eje Y
         if(this.enemies){
             this.enemies.forEach((enemie,index)=>{
-
-                if(this.player.checkCollisionEnemy(enemie)){
+                if(this.player.counterOfGel === 3){
+                    if(this.player.checkCollisionEnemy(enemie)){
+                        
+                        //añadir X puntos al jugador
+                        this.enemies.splice(index,1);
+                    }
+                }
+                if(this.player.checkCollisionEnemy(enemie) && this.turnOffCollisions){
+    
                     this.player.loseLive();
                     const heart = document.querySelector(".img")
                     heart.remove()
                 };
             });
         };
-
+//Choque enemigos eje X
 if(this.enemiesX){
     this.enemiesX.forEach((enemieX,index)=>{
-
-        if(this.player.checkCollisionEnemy(enemieX)){
+        if(this.player.counterOfGel === 3){
+            if(this.player.checkCollisionEnemy(enemieX)){
+                console.log("enemieX");
+                //añadir X puntos al jugador
+                this.enemiesX.splice(index,1);
+            }
+        }
+        if(this.player.checkCollisionEnemy(enemieX) && this.turnOffCollisions){
             this.player.loseLive();
             const heart = document.querySelector(".img")
             heart.remove()
         };
     });
 };
-
+//Choque enemigos Random
 if(this.enemiesRandom){
     this.enemiesRandom.forEach((enemieRandom,index)=>{
-
-        if(this.player.checkCollisionEnemy(enemieRandom)){
+        if(this.player.counterOfGel === 3){
+            if(this.player.checkCollisionEnemy(enemieRandom)){
+                console.log("enemieRandom");
+                //añadir X puntos al jugador
+                this.enemiesRandom.splice(index,1);
+            }
+        }
+        if(this.player.checkCollisionEnemy(enemieRandom) && this.turnOffCollisions){
             this.player.loseLive();
             const heart = document.querySelector(".img")
             heart.remove()
@@ -255,9 +304,7 @@ if(this.enemiesRandom){
     }
 
     renderHearthLives(){
-        
         if(this.player.lives !=0 && this.activeRenderHearth){
-
             const img =  `
             <img class="img animate__animated animate__bounceIn " src="./image/heart.png">
             `;

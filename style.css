@@ -186,24 +186,44 @@ animation-delay:-5s;
     box-sizing: border-box;
     padding: 5px;
     width: 300px;
-    border-radius: 10px;
+    border-radius: 5px;
     background: #FFF;
 }
 
-.bar {
+.bar1 {
     height: 10px;
-    border-radius: 10px;
-    background: -webkit-linear-gradient(#FF7359, #E65940);
-    animation: progress 2s linear;
+    background: -webkit-linear-gradient(green,#72c535 );
+    animation: progress1 2s linear;
 }
+/* .bar2 {
+    height: 10px;
+    background: -webkit-linear-gradient(green,#72c535 );
+    animation: progress2 2s linear;
+}
+.bar3 {
+    height: 10px;
+    background: -webkit-linear-gradient(green,#72c535 );
+    animation: progress3 2s linear;
+} */
 
 /* ANIMATION
   ----------------------------------------- */
-
-@-webkit-keyframes progress {
+  @keyframes progress1 {
     0%    { width: 0%; }
     30%   { width: 50% }
     70%   { width: 80% }
-    100%  { width: 100%; }
+    100%  { width: 100% }
 }
+/* @keyframes progress1 {
+    0%    { width: 0%; }
+    30%   { width: 50% }
+}
+@keyframes progress2 {
+    30%    { width: 50%; }
+    70%   { width: 80% }
+}
+@keyframes progress3 {
+    70%    { width: 80%; }
+    100%   { width: 100% }
+} */
 

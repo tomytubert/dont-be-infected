@@ -75,6 +75,5 @@ class VirusRandom {
             } else if (this.x + this.size >= this.canvas.width){
                 this.directionX = -1;
             }
-    
         }
 }

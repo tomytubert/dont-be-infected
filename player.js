@@ -10,6 +10,7 @@ class Player {
         this.directionY = 0;
         this.lives = lives;
         this.points = 0;
+        this.counterOfGel = 0;
     }
 
     update(){
@@ -63,6 +64,7 @@ class Player {
         if (collideRight && collideLeft && collideTop && collideBottom){
             this.directionX = this.directionX * -1;// Para que rebote cuando choca y no perder todas las vidas
             this.directionY = this.directionY * -1;
+            console.log("chocado");
         return true;
         } else {
             return false;
@@ -91,8 +93,13 @@ class Player {
         score.innerText = this.points
     }
 
+    addGel(){
+        this.counterOfGel++
+    }
+
     addLives(){
     this.lives++
     }
+
 
 }
