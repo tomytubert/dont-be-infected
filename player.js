@@ -93,6 +93,10 @@ class Player {
         score.innerText = this.points
     }
 
+    virusDeadPoints(){
+        this.points += 10
+    }
+
     addGel(){
         this.counterOfGel++
     }

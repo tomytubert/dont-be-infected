@@ -244,13 +244,11 @@ class Game{
             this.enemies.forEach((enemie,index)=>{
                 if(this.player.counterOfGel === 3){
                     if(this.player.checkCollisionEnemy(enemie)){
-                        
-                        //añadir X puntos al jugador
+                        this.player.virusDeadPoints();
                         this.enemies.splice(index,1);
                     }
                 }
                 if(this.player.checkCollisionEnemy(enemie) && this.turnOffCollisions){
-    
                     this.player.loseLive();
                     const heart = document.querySelector(".img")
                     heart.remove()
@@ -262,8 +260,7 @@ if(this.enemiesX){
     this.enemiesX.forEach((enemieX,index)=>{
         if(this.player.counterOfGel === 3){
             if(this.player.checkCollisionEnemy(enemieX)){
-                console.log("enemieX");
-                //añadir X puntos al jugador
+                this.player.virusDeadPoints();
                 this.enemiesX.splice(index,1);
             }
         }
@@ -279,8 +276,7 @@ if(this.enemiesRandom){
     this.enemiesRandom.forEach((enemieRandom,index)=>{
         if(this.player.counterOfGel === 3){
             if(this.player.checkCollisionEnemy(enemieRandom)){
-                console.log("enemieRandom");
-                //añadir X puntos al jugador
+                this.player.virusDeadPoints();
                 this.enemiesRandom.splice(index,1);
             }
         }
