@@ -49,14 +49,18 @@ const main = () => {
     const buildGameScreen = () => {
         buildDom(`
         <section class="game-screen">
-        <h1>Don't Be Infected</h1>
+        <h1 class="white-title non-margin">Don't Be Infected</h1>
         <div id="data">
         <div>
-        <p>Score</p>
-        <span class="score">0</span>
+        <p class="white-title">Score</p>
+        <span class="score white-title">0</span>
+        </div>
+        <div class="box">
+        <p class="black-title">Power</p>
+        <div class="bar"></div>
         </div>
         <div>
-        <p>Lives</p>
+        <p class="white-title">Lives</p>
         <span class="lives"></span>
         </div>
         </div>

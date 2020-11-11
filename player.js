@@ -58,12 +58,11 @@ class Player {
         const collideRight = this.x + this.size/2 > enemy.x - enemy.size/2;
         const collideLeft = this.x - this.size/4 < enemy.x;
         const collideTop = this.y + this.size/2 > enemy.y - enemy.size/2;
-        const collideBottom = this.y -this.size/4< enemy.y;
+        const collideBottom = this.y - this.size/4< enemy.y + enemy.size/2;
         
         if (collideRight && collideLeft && collideTop && collideBottom){
             this.directionX = this.directionX * -1;// Para que rebote cuando choca y no perder todas las vidas
             this.directionY = this.directionY * -1;
-            //console.log("reboto");
         return true;
         } else {
             return false;
@@ -79,23 +78,7 @@ class Player {
         if (collideRight && collideLeft && collideTop && collideBottom) {
         return true;
         }
-    
         return false;
-    }
-
-    checkCollisionEnemyX(enemyX) {
-
-        //const collideRight = this.x + this.size/2 > enemyX.x - enemyX.size/2;
-        //const collideRight = this.x + this.size / 2 > enemyX.x - enemyX.size/4;
-        const collideLeft = this.x - this.size/4 < enemyX.x;
-        //const collideLeft = this.x + this.size / 2 < enemyX.x - enemyX.size /4;
-        //const collideTop = this.y - this.size /2 > enemyX.size/2;
-        if (collideLeft){
-            this.directionX = this.directionX * -1;
-        return true;
-        } else {
-            return false;
-        }
     }
 
     loseLive(){

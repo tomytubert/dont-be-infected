@@ -19,4 +19,5 @@ class Points {
         img.src ="./image/vaccine.png"
         this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
         }
+        
 }

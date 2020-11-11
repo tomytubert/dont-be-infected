@@ -1,11 +1,11 @@
 class BigVirusX { //Va de izquierda a derecha
-    constructor(canvas,x){
+    constructor(canvas,x,y){
         
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
-        this.size = this.canvas.height;
-        this.x = x -this.size;
-        this.y = 0;
+        this.size = 40;
+        this.x = x;
+        this.y = y;
         this.speed = 1;
         this.direction = 1;// Empieza hacia derecha
     }
@@ -21,11 +21,10 @@ class BigVirusX { //Va de izquierda a derecha
     }
 
     checkScreen(){
-        if(this.x + this.size > this.canvas.width/2){
+        if(this.x<= 0){
+            this.direction = 1;
+        } else if (this.x + this.size >= this.canvas.width){
             this.direction = -1;
-        } 
-        if (this.x + this.size/2 <= this.canvas.width/2){
-            console.log("a");
         }
     } 
 
