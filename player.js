@@ -11,22 +11,73 @@ class Player {
         this.lives = lives;
         this.points = 0;
         this.counterOfGel = 0;
+        this.widthSprite = 81;
+        this.heightSprite = 20;
+        this.ticksPerFrames = 15;
+        this.numberOfFrames = 3;
+        this.frameIndex = 0;
+        this.tickCount = 0;
     }
 
     update(){
         this.y = this.y + this.directionY * this.speed
         this.x = this.x + this.directionX * this.speed
     }
-    drawL(){
+    renderPlayer(){
+        this.tickCount += 1;
+    if (this.tickCount > this.ticksPerFrames) {
+      this.tickCount = 0;
+      // Mirar si el indice esta dentro del frame
+      if (this.frameIndex < this.numberOfFrames - 1) {
+        // Ir al siguiente frame
+        this.frameIndex += 1;
+      } else {
+        //Vuelve al frame 0 y crea animacion
+        this.frameIndex = 0;
+      }
+    }
+    }
+    draw(){
     let img = new Image();
-    img.src = "./image/MArioBros.png"
-    this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
+    img.src = "./image/Mario-Sprite.png"
+    this.ctx.drawImage(img,this.x,this.y,this.size,this.size)   
+    }
+    drawL(){
+    // let img = new Image();
+    // img.src = "./image/MArioBros.png"
+    // this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
+    let img = new Image();
+        img.src = "./image/Mario-Sprite_D.png"
+        this.ctx.drawImage(
+        img,
+        this.frameIndex * this.widthSprite / this.numberOfFrames,
+        0,
+        this.widthSprite / this.numberOfFrames,
+        this.heightSprite,
+        this.x,
+        this.y,
+        this.size,
+        this.size
+        )
     }
 
     drawR(){
+        // let img = new Image();
+        // img.src = "./image/MArioBrosL.png"
+        // this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
         let img = new Image();
-        img.src = "./image/MArioBrosL.png"
-        this.ctx.drawImage(img,this.x,this.y,this.size,this.size)
+        img.src = "./image/Mario-Sprite-I.png"
+        this.ctx.drawImage(
+        img,
+        this.frameIndex * this.widthSprite / this.numberOfFrames,
+        0,
+        this.widthSprite / this.numberOfFrames,
+        this.heightSprite,
+        this.x,
+        this.y,
+        this.size,
+        this.size
+        )
         }
 
     setDirectionX(direction){

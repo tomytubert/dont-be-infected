@@ -20,7 +20,6 @@ class Game{
     this.turnOffCollisions = true;
     }
 
-
     startLoop(){
         this.player = new Player (this.canvas, 1) //Le doy vidas al Player y lo creo
         this.map = new Map (this.canvas)
@@ -32,20 +31,19 @@ class Game{
             this.points.push(new Points(this.canvas,y,x))
             }
 
-            if(Math.random()*10000>9980 && this.player.lives < 3){ //Creo aquí la vida 
+            if(Math.random()*10000>9990 && this.player.lives < 3){ //Creo aquí la vida 
                 let x = Math.random()*(this.canvas.width-80)//le resto por que se me salian del canvas
                 let y = Math.random()*(this.canvas.height-80)
                 this.vaccine = new Vaccine(this.canvas,y,x)
             }
 
-            if(Math.random()*10000>9980 && this.activeMoreGel){ //Creo aquí el gel
+            if(Math.random()*10000>9990 && this.activeMoreGel){ //Creo aquí el gel
                 let x = Math.random()*(this.canvas.width-80)//le resto por que se me salian del canvas
                 let y = Math.random()*(this.canvas.height-80)
                 this.gel = new Gel(this.canvas,y,x)
             }
 
             function multiple(valor,multiple){
-
                 let resto = valor % multiple;
                 if(resto===0){
                     return true;
@@ -53,8 +51,6 @@ class Game{
                     return false
                 }
             };
-
-
             //Creación de los virus que va  random
             if(multiple(this.player.points,2) && this.player.points > 0 && this.activeEnemiesRandom){
                 let a = Math.random()
@@ -71,7 +67,7 @@ class Game{
                     },10000)
             }
             //Creación de los virus que van en el ejeY
-            if(multiple(this.player.points,20) && this.player.points > 0 && this.activeEnemiesY){
+            if(multiple(this.player.points,3) && this.player.points > 0 && this.activeEnemiesY){
                 let a = Math.random()
                 let x = Math.random()*(this.canvas.width)
                     if(a > 0.5){
@@ -86,7 +82,7 @@ class Game{
                     },10000)
             }
             //Creación de los virus que van en el ejeX
-            if(multiple(this.player.points,15) && this.player.points > 0 && this.activeEnemiesX){
+            if(multiple(this.player.points,5) && this.player.points > 0 && this.activeEnemiesX){
                 let a = Math.random()
                 let y = Math.random()*(this.canvas.height)
                 if(a > 0.5){
@@ -118,6 +114,7 @@ class Game{
 
     updateCanvas(){
         this.player.update();
+        this.player.renderPlayer();//Render Sprites
         if(this.enemies){
             this.enemies.forEach((enemies)=>{
                 enemies.update();
@@ -143,7 +140,7 @@ class Game{
     drawCanvas(){
 
         if(this.player.directionX === 0){
-            this.player.drawL()
+            this.player.draw()
         } else if (this.player.directionX === -1){
             this.player.drawR()
         } else if (this.player.directionX === 1){
@@ -229,12 +226,14 @@ class Game{
                     this.activeMoreGel = false;
                     this.turnOffCollisions = false;
                     this.player.speed = 4;
+                    this.player.ticksPerFrames = 30; 
                     setTimeout(()=>{
                         this.activeMoreGel = true;//Pasados 5s vuelve a generar geles
                         this.turnOffCollisions = true; //Y se activan otra vez los choques
                         this.player.counterOfGel = 0; // Vuelve a contar
                         bar.classList.remove("bar1")
                         this.player.speed = 2;
+                        this.player.ticksPerFrames = 15; 
                     },5000) 
                 }
             }

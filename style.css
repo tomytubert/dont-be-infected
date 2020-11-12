@@ -13,10 +13,33 @@
     transform: translate(-50%,-50%);
     position: absolute;
 }
-
+.instruction-screen{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
 .game-screen > canvas{
 background-color: white;
 height: 800px;
+}
+#instruction-box{
+    margin-top: 10px;
+    display: flex;
+    border: 3px black solid;
+    justify-content: space-around;
+    width: 1000px;
+    height: auto;
+    background-image: url(./image/background-difuminado.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.half-box{
+    justify-content: space-around;
+    align-items: center;
+}
+.half-box > div > p{
+    font-size:15px;
 }
 .game-screen{
     background-image: url(./image/background.jpg);
