@@ -87,7 +87,7 @@ const main = () => {
                 <p>Esquiva los virus para no perder vidas</p>
             </div>
             <div>
-                <img src="./image/Coge Gel.jpg" height="200px" width="300px">
+                <img src="./image/coge gel.jpg" height="200px" width="300px">
                 <p>Consigue gel para poder eliminar el virus durante 5s y conseguir 10 puntos</p>
             </div>
         </div>
