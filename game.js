@@ -226,7 +226,7 @@ class Game{
                     this.activeMoreGel = false;
                     this.turnOffCollisions = false;
                     this.player.speed = 4;
-                    this.player.ticksPerFrames = 30; 
+                    this.player.ticksPerFrames = 7.5; 
                     setTimeout(()=>{
                         this.activeMoreGel = true;//Pasados 5s vuelve a generar geles
                         this.turnOffCollisions = true; //Y se activan otra vez los choques
